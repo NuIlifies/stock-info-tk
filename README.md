@@ -2,7 +2,7 @@
 
 Nothing fancy here. Just a simple tkinter mock-CLI that I'm migrating to this independent repository for future use.
 
-# USAGE
+# Usage
 
 The dictionary cmdList defined on line three should be used to actually define your commands. The key (**foo**:bar) should be used to define the name of the command, and the value (foo:**bar**) should be used to define the function which it will invoke. Arguments are passed on automatically and no additional parameters need to be provided in the dictionary.
 
