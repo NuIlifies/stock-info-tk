@@ -1,7 +1,8 @@
 from tkinter import *
 
 cmdList = {
-# Usage: Write command name in key, invoke function in value
+# Usage: Write command name in key, invoke function in value,arguments are automatically passed to function
+# Please remember that the function is being invoked from within the class, meaning it should be invoked through self.x()
     "foo":"bar"  
 }
 
