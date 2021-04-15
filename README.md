@@ -1,4 +1,5 @@
 # tkinterUI
+![Python Version](https://img.shields.io/static/v1?label=Python&message=3.9.1&color=informational) 
 
 Nothing fancy here. Just a simple tkinter mock-CLI that I'm migrating to this independent repository for future use.
 

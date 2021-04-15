@@ -1,18 +1,23 @@
 from tkinter import *
 
-# Usage: Write command name in key, invoke function in value,arguments are automatically passed to function
-# Please remember that the function is being invoked from within the class, meaning it should be invoked through self.x()
 
+windowTitle = "[YOURTITLE]"
+windowGeometry = "450x350"
+
+# Usage: Write command name in key, invoke function in value,arguments are passed by entering 
+# Please remember that the function is being invoked from within the class, meaning it should be invoked through self.x()
 cmdList = {
     "foo":"bar"  
 }
-class commands:
+
+class commands  :
+# Insert your commands as METHODS within this class
     def __init__(self):
         pass
 
 class gui:
 
-    def __init__(self, master):
+    def __init__(self, master): 
         
         master.columnconfigure(0, weight=1)
 
@@ -67,7 +72,7 @@ class gui:
                     else:
                         self.args.append(command[i])
                 
-            #If the first item in the list (the main command) exists in the dictionary
+            #If the first item in the list (the main command) exists in the dictionary cmdList
             if command[0] not in cmdList:
                 self.out("Invalid command! Type 'help' for a list of commands", 1)
             else:
@@ -78,12 +83,11 @@ class gui:
         
 
         
-
+#main window params
 if __name__=="__main__":
-    #main window params
     root = Tk()
-    root.geometry("450x300")
-    root.title("WINDOWTITLE")
+    root.geometry(windowGeometry)
+    root.title(windowTitle)
     ui = gui(root)
     root.mainloop()
     
