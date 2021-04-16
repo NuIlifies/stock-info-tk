@@ -1,19 +1,21 @@
 from tkinter import *
-
+from commands import commands
 
 windowTitle = "[YOURTITLE]"
 windowGeometry = "450x350"
 
-# Usage: Write command name in key, invoke function in value,arguments are passed by entering 
-# Please remember that the function is being invoked from within the class, meaning it should be invoked through self.x()
-cmdList = {
-    "foo":"bar"  
-}
+"""Usage: Write command name in key, invoke function in value, arguments are automatically passed within a list by passing through the self.args variable
+ Please remember that the function is by default being invoked from within the class, meaning it should be invoked through self.x()
+ IF USING COMMANDS.PY MODULE FOR COMMANDS: Please ensure that you remember to call the parent class "commands" 
 
-class commands  :
-# Insert your commands as METHODS within this class
-    def __init__(self):
-        pass
+i.e.:
+ cmdList = {
+    "foo":"commands.foo(self.args)"  
+}"""
+
+cmdList = {
+    'foo':'bar()'  
+}
 
 class gui:
 
@@ -41,7 +43,7 @@ class gui:
 
 
     def out(self, text, origin):
-        # Origin 1 is from the application and will not be prefaced by >, origin 0 is from user and will be prefaced in order to clearly denote commands
+        # Origin 1 is from the application and will not be prefaced by >, origin 0 is from user and will be prefaced with > in order to clearly differentiate commands and output
         if origin == 1:
             self.output.insert(END, str(text))
         else:
@@ -83,7 +85,7 @@ class gui:
         
 
         
-#main window params
+# Main window parameters
 if __name__=="__main__":
     root = Tk()
     root.geometry(windowGeometry)
