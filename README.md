@@ -6,7 +6,7 @@ An application using my tkinter frontend to retrieve information about stocks.
 
 # Usage
 
-TBD
+TBD 
 
 ## Requirements to Run
 
