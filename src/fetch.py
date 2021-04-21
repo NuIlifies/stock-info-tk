@@ -9,4 +9,4 @@ headers = {
 def get(ticker):
     query = {"q":ticker, "region":"US"}
     response = requests.request("GET", url, headers=headers, params=query)
-    return response.text
+    return response.json()

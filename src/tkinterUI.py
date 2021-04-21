@@ -2,7 +2,7 @@ from tkinter import *
 from commands import commands
 
 windowTitle = "[YOURTITLE]"
-windowGeometry = "450x250"
+windowGeometry = "450x425"
 
 """
 Usage: Write command name in key, invoke function in value, arguments are automatically passed within a list by passing through the self.args variable
@@ -21,7 +21,7 @@ cmdList = {
 
 class gui:
 
-    def __init__(self, master): vf
+    def __init__(self, master): 
         master.columnconfigure(0, weight=1)
 
         master.rowconfigure(0, weight=1)
@@ -29,11 +29,13 @@ class gui:
 
         # Intended to act as a pseudo-console for output
         self.output = Text(master)
-        self.output.grid(row=0, column=0, columnspan=2,sticky="ew")
+        self.output.grid(row=0, columnspan=2,sticky="ew")
+
         # Get user input for commands
         self.inputBox = Entry(master)
         self.inputBox.grid(row=1, column=0, sticky="ew")
     
+        # Submit button
         self.submit = Button(master, text="→", command=self.processCommand)
         self.submit.grid(row=1, column=1, sticky="ew")
 
@@ -41,16 +43,20 @@ class gui:
         master.bind('<Return>', self.processCommand)
 
         self.out("NAME successfully loaded.", 1)
+        # Text box set to "disabled" to prevent users typing to it. Commands are typed through the command bar 
+        self.output.configure(state="disabled")
 
 
     def out(self, text, origin):
         # Origin 1 is from the application and will not be prefaced by >, origin 0 is from user and will be prefaced with > in order to clearly differentiate commands and output
+        # First set to "normal" state which re-enables textbox
+        self.output.configure(state="normal")
         if origin == 1:
             self.output.insert(END, str(text + "\n"))
         else:
             self.output.insert(END, ">" + str(text + "\n"))
-
         self.output.yview(END)
+        self.output.configure(state="disabled")
 
 
     def processCommand(self, *event): #*event parameter added since master.bind also passes thru keystroke event to method
