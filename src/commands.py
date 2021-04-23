@@ -4,5 +4,6 @@ import fetch as f
 class commands:
     def __init__(self):
         pass
-    def fetch(ticker):
-        return f.get(ticker)
+    def fetch(symbols):
+        stockJson = f.get(symbols)
+        return str(stockJson)

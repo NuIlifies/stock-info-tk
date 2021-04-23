@@ -28,7 +28,7 @@ class gui:
         master.rowconfigure(1, weight=1)
 
         # Intended to act as a pseudo-console for output
-        self.output = Text(master)
+        self.output = Text(master,wrap="word")
         self.output.grid(row=0, columnspan=2,sticky="ew")
 
         # Get user input for commands
@@ -85,7 +85,10 @@ class gui:
             if command[0] not in cmdList:
                 self.out("Invalid command! Type 'help' for a list of commands\n", 1)
             else:
-                exec(cmdList[command[0]])
+                try:
+                    exec(cmdList[command[0]])
+                except TypeError:
+                    self.out("Invalid number of arguments passed.", 1)
     
     def invalidCommandArgument(self, arg):
         self.out("Invalid argument(s) '{}'\n".format(str(arg)), 1)
