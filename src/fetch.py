@@ -6,10 +6,20 @@ headers = {
     'x-rapidapi-host': "yahoo-finance-low-latency.p.rapidapi.com"
 }
 
-def get(symbols):
+def get(symbols):   
     query = {"symbols":symbols, "region":"US"}
     response = requests.request("GET", url, headers=headers, params=query)
-    jsonResponse = reponse.json()
+    jsonResponse = response.json()
 
-    print(jsonResponse)
 
+    # SYMBOLS ARE APPENDED TO LIST IN CASE NUMEROUS SYMBOLS ARE PASSED
+    symbolsList = []
+    print(len(jsonResponse['quoteResponse']['result']))
+
+
+    if len(jsonResponse['quoteResponse']['result']) == 0:
+        return "Invalid symbol '{}'".format(symbols[0])
+    else:
+        for x in range(len(jsonResponse['quoteResponse']['result'])):
+            symbolsList.append(jsonResponse['quoteResponse']['result'][x]['longName'])
+    return symbolsList

@@ -4,17 +4,6 @@ from commands import commands
 windowTitle = "[YOURTITLE]"
 windowGeometry = "450x425"
 
-"""
-Usage: Write command name in key, invoke function in value, arguments are automatically passed within a list by passing through the self.args variable
- Please remember that the function is by default being invoked from within the class, meaning it should be invoked through self.x()
- IF USING COMMANDS.PY MODULE FOR COMMANDS: Please ensure that you remember to call the parent class "commands" 
-
-i.e.:
- cmdList = {
-    "foo":"commands.foo(self.args)"  
-}
-"""
-
 cmdList = {
     'fetch':'self.out(commands.fetch(self.args), 1)'  
 }
@@ -55,7 +44,7 @@ class gui:
             self.output.insert(END, str(text + "\n"))
         else:
             self.output.insert(END, ">" + str(text + "\n"))
-        self.output.yview(END)
+        self.output.yview(END)  
         self.output.configure(state="disabled")
 
 
@@ -85,10 +74,7 @@ class gui:
             if command[0] not in cmdList:
                 self.out("Invalid command! Type 'help' for a list of commands\n", 1)
             else:
-                try:
-                    exec(cmdList[command[0]])
-                except TypeError:
-                    self.out("Invalid number of arguments passed.", 1)
+                exec(cmdList[command[0]])
     
     def invalidCommandArgument(self, arg):
         self.out("Invalid argument(s) '{}'\n".format(str(arg)), 1)
