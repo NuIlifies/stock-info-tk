@@ -27,9 +27,15 @@ def name(symbols):
 
     # If nothing is returned, probably because a symbol was entered incorrectly
     if len(jsonResponse['quoteResponse']['result']) == 0:
-        return "Invalid symbol '{}'".format(symbols[0])
+        return "Invalid symbol '{}'".format(symbols)
     else:
     # If there actually is a result, then added the longName property to list
-        for x in range(len(jsonResponse['quoteResponse']['result'])):
-            symbolsList.append(jsonResponse['quoteResponse']['result'][x]['longName'])
+        try:
+            for x in range(len(jsonResponse['quoteResponse']['result'])):
+                symbolsList.append(jsonResponse['quoteResponse']['result'][x]['longName'])
+        except IndexError:
+            symbolsList = "Error retrieving information from symbol(s) {}".format(symbols)
+        except KeyError:
+            symbolsList = "Error retrieving information from symbol(s) {}".format(symbols)
+    
     return symbolsList

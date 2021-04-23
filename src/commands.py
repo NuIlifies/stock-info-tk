@@ -6,5 +6,5 @@ class commands:
         pass
 
     def fetch(searchParam, symbols):
-        stockJson = f.get(searchParam, symbols)
+        stockJson = f.assignParam(searchParam, symbols)
         return str(stockJson)
