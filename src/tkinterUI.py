@@ -5,7 +5,7 @@ windowTitle = "[YOURTITLE]"
 windowGeometry = "450x425"
 
 cmdList = {
-    'fetch':'self.out(commands.fetch(self.args), 1)'  
+    'fetch':'self.out(commands.fetch(self.args[0],self.args[1]), 1)'  
 }
 
 class gui:
@@ -75,7 +75,7 @@ class gui:
                 self.out("Invalid command! Type 'help' for a list of commands\n", 1)
             else:
                 exec(cmdList[command[0]])
-    
+
     def invalidCommandArgument(self, arg):
         self.out("Invalid argument(s) '{}'\n".format(str(arg)), 1)
         

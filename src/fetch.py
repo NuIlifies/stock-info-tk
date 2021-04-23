@@ -6,20 +6,30 @@ headers = {
     'x-rapidapi-host': "yahoo-finance-low-latency.p.rapidapi.com"
 }
 
-def get(symbols):   
+#assign proper function based on provided search parameter (what you wanna look for, i.e. name)
+def assignParam(searchParam, symbols):
+    if searchParam.upper() == "NAME":
+        return name(symbols)
+
+
+#make request and return request json
+def makeRequest(symbols):
     query = {"symbols":symbols, "region":"US"}
     response = requests.request("GET", url, headers=headers, params=query)
-    jsonResponse = response.json()
+    return response.json()
 
+
+def name(symbols):   
+    jsonResponse = makeRequest(symbols)
 
     # SYMBOLS ARE APPENDED TO LIST IN CASE NUMEROUS SYMBOLS ARE PASSED
     symbolsList = []
-    print(len(jsonResponse['quoteResponse']['result']))
 
-
+    # If nothing is returned, probably because a symbol was entered incorrectly
     if len(jsonResponse['quoteResponse']['result']) == 0:
         return "Invalid symbol '{}'".format(symbols[0])
     else:
+    # If there actually is a result, then added the longName property to list
         for x in range(len(jsonResponse['quoteResponse']['result'])):
             symbolsList.append(jsonResponse['quoteResponse']['result'][x]['longName'])
     return symbolsList
