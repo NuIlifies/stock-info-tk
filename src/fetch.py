@@ -1,4 +1,6 @@
 import requests
+from time import ctime
+
 url = "https://yahoo-finance-low-latency.p.rapidapi.com/v6/finance/quote"
 
 headers = {
@@ -14,9 +16,8 @@ def assignParam(searchParam, symbols):
         return raw_response(symbols)
     elif searchParam.upper() == "PRICE":
         return price(symbols)
-    else:
+    else:   
         return "Invalid operation '{}'".format(searchParam)
-
 
 #make request and return request json
 def makeRequest(symbols):
@@ -44,7 +45,9 @@ def parseRequest(operation, jsonResponse):
     if len(symbolsList) == 1:
         symbolsList = symbolsList[0]
 
-    return symbolsList
+    responseForReturn = "Information '{}' fetched at ".format(operation) + ctime() + ": {}".format(symbolsList)
+
+    return responseForReturn
 
 
 def name(symbols):   
