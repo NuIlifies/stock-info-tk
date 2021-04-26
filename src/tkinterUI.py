@@ -1,7 +1,7 @@
 from tkinter import *
 from commands import commands
 
-windowTitle = "[YOURTITLE]"
+windowTitle = "stock-info-tk"
 windowGeometry = "450x425"
 
 cmdList = {

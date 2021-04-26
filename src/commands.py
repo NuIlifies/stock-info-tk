@@ -8,3 +8,4 @@ class commands:
     def fetch(searchParam, symbols):
         stockJson = f.assignParam(searchParam, symbols)
         return str(stockJson)
+
