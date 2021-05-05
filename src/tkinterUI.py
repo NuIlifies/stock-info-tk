@@ -3,9 +3,11 @@ from commands import commands
 
 windowTitle = "stock-info-tk"
 windowGeometry = "450x425"
+applicationTitle = "stock-info-tk"
 
 cmdList = {
-    'fetch':'self.out(commands.fetch(self.args[0],self.args[1]), 1)'  
+    'fetch':'self.out(commands.fetch(self.args[0],self.args[1]), 1)' ,
+    'chart':'commands.chart(self.args[0])'
 }
 
 class gui:
@@ -31,7 +33,7 @@ class gui:
         #Bind enter key to yield same results as clicking submit button
         master.bind('<Return>', self.processCommand)
 
-        self.out("NAME successfully loaded.", 1)
+        self.out(applicationTitle + " successfully loaded.", 1)
         # Text box set to "disabled" to prevent users typing to it. Commands are typed through the command bar 
         self.output.configure(state="disabled")
 
@@ -71,10 +73,15 @@ class gui:
                         self.args.append(command[i])
                 
             #If the first item in the list (the main command) exists in the dictionary cmdList
-            if command[0] not in cmdList:
-                self.out("Invalid command! Type 'help' for a list of commands\n", 1)
+            command = command[0]
+            if command not in cmdList:
+                self.out("Invalid command! Type 'help' for a list of commands", 1)
             else:
-                exec(cmdList[command[0]])
+                print(command)
+                try:
+                    exec(cmdList[command])
+                except IndexError:
+                    self.out("Invalid number of arguments provided.", 1)
 
     def invalidCommandArgument(self, arg):
         self.out("Invalid argument(s) '{}'\n".format(str(arg)), 1)
