@@ -1,5 +1,5 @@
 from time import ctime
-from request import makeRequest
+from modules import request 
 
 #assign proper function based on provided search parameter (what you wanna look for, i.e. name)
 def assignParam(searchParam, symbols):
@@ -45,14 +45,14 @@ def parseRequest(operation, jsonResponse, rawResponseBool):
 
 
 def name(symbols):   
-    jsonResponse = makeRequest(symbols, "quote")
+    jsonResponse = request.makeRequest(symbols, "quote")
     return parseRequest('longName', jsonResponse, 0)
 
 def price(symbols):
-    jsonResponse = makeRequest(symbols, "quote")
+    jsonResponse = request.makeRequest(symbols, "quote")
     return parseRequest('bid', jsonResponse, 0)
 
 def raw_response(symbols):
-    jsonResponse = makeRequest(symbols, "quote")
+    jsonResponse = request.makeRequest(symbols, "quote")
     return parseRequest(None, jsonResponse, 1)
 

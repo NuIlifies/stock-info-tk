@@ -1,13 +1,13 @@
 # This file exists to handle requests between the application and RapidAPI. Returns result as JSON.
 # API key is held in my own file covered by gitignore. Replace it with whatever you want.   
 # JSON parsing must be performed elsewhere.
-from key import key
+from modules import key as k
 import requests
 
 url = "https://yahoo-finance-low-latency.p.rapidapi.com/v6/finance/"
 
 headers = {
-    'x-rapidapi-key': key,
+    'x-rapidapi-key': k.key,
     'x-rapidapi-host': "yahoo-finance-low-latency.p.rapidapi.com"
 }
 

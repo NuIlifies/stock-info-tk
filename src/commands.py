@@ -1,5 +1,5 @@
-import fetch as f
-import chart as c
+from modules import fetch as f
+from modules import chart as c
 
 # The class where your commands are going to be stored as methods
 def notEnoughArgs(expectedNum):
